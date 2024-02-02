@@ -175,7 +175,7 @@ router.post("/postBlog",async(req,res)=>{
             req.body.sr = n + 1;
             req.body.date = await new Date().toJSON();;
             req.body.user = user.name;
-            console.log(req.body);
+            // console.log(req.body);
             blog.create(req.body);
             
             res.write("<h1>Success in Blog Creation, Blog have been Save in the database</h1>")

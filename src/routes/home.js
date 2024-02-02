@@ -6,7 +6,7 @@ const widgetText= require("../models/widgetText");
 
 router.get('/',async(req,res)=>{
     let NewPage = req.query.page;
-    console.log("hello: page number is " + NewPage);
+    // console.log("hello: page number is " + NewPage);
     if(NewPage == undefined) NewPage = 1;
 
     const arr = await blogs.find();
@@ -23,8 +23,8 @@ router.get('/',async(req,res)=>{
     let maxPage = Math.ceil(n/5.0);
     let st = (NewPage-1)*5;
     let en = Math.min(NewPage*5,n);
-    console.log(n);
-    console.log(st+"  "+en);
+    // console.log(n);
+    // console.log(st+"  "+en);
 
     let nums = [];
     let j = 0;
