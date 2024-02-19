@@ -5,33 +5,31 @@ const widgetText= require("../models/widgetText");
 
 
 router.get('/',async(req,res)=>{
-    let NewPage = req.query.page;
+    let NewPage = req.query.page || 1;
     // console.log("hello: page number is " + NewPage);
-    if(NewPage == undefined) NewPage = 1;
+    if(NewPage === undefined) NewPage = 1;
 
     const arr = await blogs.find();
     arr.reverse();
     let n = arr.length;
 
-    if(NewPage <=0) NewPage = 1;
-    else if(NewPage >= (n+4)/5) NewPage = 1;
-    else if(NewPage <= 0) {
-        NewPage = (n+4)/5;
+    if(NewPage <=0 || NewPage >= (n+4)/5){ 
+        NewPage = 1;
+        req.query.page = 1;
+        res.redirect('/?page=1')
+        return ;
     }
-    req.query.page = NewPage;
     
-    let maxPage = Math.ceil(n/5.0);
+    // let maxPage = Math.ceil(n/5.0);
     let st = (NewPage-1)*5;
     let en = Math.min(NewPage*5,n);
-    // console.log(n);
-    // console.log(st+"  "+en);
 
     let nums = [];
     let j = 0;
     for(let i=st;i<en;i++){
         let s = "";
         let m = arr[i].context.length;
-        // console.log(m);
+
         for(let j=0;j<Math.min(m,500);j++){
             s += arr[i].context[j];
         }
