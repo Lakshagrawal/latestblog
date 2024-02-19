@@ -101,17 +101,17 @@
                 </ul>
             </div> --}}
 
-        </div> <!-- end sidebar -->
 
+        </div> <!-- end sidebar -->
+    <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-primary" id="prevPage" onclick="prev()">Prev</button>
+        <button type="button" class="btn btn-primary" id="nextPage" onclick="next()">Next</button>
+    </div>
     </div> <!-- end row -->
-<button type="button" class="btn btn-primary" id="prevPage" onclick="prev()">Prev</button>
-<button type="button" class="btn btn-primary" id="nextPage" onclick="next()">Next</button>
 </div> <!-- end content-wrap -->
 
 <script>
     function next(){
-        
-
         var query = window.location.search.substring(1); // Get the query string
         var currentUrl = window.location.href
         console.log(query)
@@ -159,6 +159,10 @@
             }
             console.log("this is : ", pageNum);
             console.log(typeof(pageNum));
+            if(pageNum === 1 || pageNum === 0){
+                pageNum = 1;
+            }
+
             window.location.href = `http://localhost:3000/?page=${--pageNum}`;
 
     return true;
