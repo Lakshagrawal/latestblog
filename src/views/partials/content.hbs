@@ -114,6 +114,9 @@
     function next(){
         var query = window.location.search.substring(1); // Get the query string
         var currentUrl = window.location.href
+        const url = new URL(window.location.href);
+        const hostname = url.origin; // "http://localhost:3000"
+        
         console.log(query)
             var parameters = query.split('&'); // Split parameters into an array
             var parameterValues = new Map();
@@ -133,13 +136,16 @@
             }
             console.log("this is : ", pageNum);
             console.log(typeof(pageNum));
-            window.location.href = `http://localhost:3000/?page=${++pageNum}`;
+            window.location.href = `${hostname}/?page=${++pageNum}`;
 
     return true;
     }
     function prev(){
         var query = window.location.search.substring(1); // Get the query string
         var currentUrl = window.location.href
+
+        const url = new URL(window.location.href);
+        const hostname = url.origin; // "localhost"
         console.log(query)
             var parameters = query.split('&'); // Split parameters into an array
             var parameterValues = new Map();
@@ -163,7 +169,8 @@
                 pageNum = 1;
             }
 
-            window.location.href = `http://localhost:3000/?page=${--pageNum}`;
+            window.location.href = `${hostname}/?page=${--pageNum}`;
+            //window.location.href = `http://localhost:3000/?page=${--pageNum}`;
 
     return true;
     }
