@@ -10,13 +10,15 @@ const widgetText= require("../models/widgetText");
 
 // use of json file in the router or || app file 
 router.use(express.json());
-router.use(cookieParser())
 const  bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({
     extended:true
 }))
+//use to parse the cookies to the webapplication
+router.use(cookieParser());
 
-// --->  /user
+
+// ------------->  /user
 
 router.get("/", async(req,res)=>{
     let widget = await widgetText.findOne();
@@ -66,13 +68,8 @@ router.post("/VerifySignup",async(req,res)=>{
             })
             let vall = await apiVerify.json();
             let statusCode = await apiVerify.status;
-            // console.log(statusCode);
 
             if(statusCode === 200){  
-                // console.log("success in user creation, take time to verify it by the admin");
-                // res.write("<h1>Success in user creation, take time to verify it by the admin</h1>")
-                // res.write('<a href="/user">Login in</a>')
-                // res.send();
                 res.redirect('/user')
             }
             else{

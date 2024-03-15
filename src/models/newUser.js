@@ -1,7 +1,6 @@
 require('dotenv').config()
 const mongoose = require("mongoose")
 const jwt = require("jsonwebtoken");
-const { log } = require("console");
 
 
 const User = new mongoose.Schema({
@@ -15,8 +14,8 @@ const User = new mongoose.Schema({
 })
 
 
-// generate token 
-// please be careful methods ***s** hai 
+// generate token and storing in the DB 
+// It is also use as the middleware where I send the token to the 
 User.methods.generateAuthToken = async function(req,res){
     // console.log("this is the _id "+this._id);
     try {

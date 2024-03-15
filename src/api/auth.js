@@ -1,26 +1,24 @@
+require('dotenv').config()
 const express = require("express");
 const newUser = require("../models/newUser")
 const bcrypt = require('bcrypt');
 
 const router = express.Router();
-let blog = require("../models/blog")
 
 router.use(express.json());
-require('dotenv').config()
 const  bodyParser = require("body-parser");
 router.use(bodyParser.urlencoded({
     extended:true
 }))
   
 
-// Done 
+// sign up page Done 
 router.post('/signUp',async(req,res,next)=>{
-    // console.log("this si sign up page *****************");
+    // console.log("this si sign up page");
     // console.log(req.body);
     
     try{
         const {name,email,pass,cpass,user} = req.body;
-        // console.log(req.body);
         let arr = await newUser.find({});
         let n = arr.length;
         let flag = false;
@@ -69,7 +67,7 @@ router.post('/signUp',async(req,res,next)=>{
 
 
 
-// Done
+// sign in/ log in page Done
 router.post("/signIn",async(req,res)=>{
     const {user,pass} =  req.body;
     
